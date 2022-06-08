@@ -17,7 +17,7 @@ stages:
     jobs:
       - job: Build
         steps:
-          - script: echo $(myVarfromStage)
+          - script: echo "Here $(myVarfromStage)"
 
 #stages:
 #  - stage: PreBuild
