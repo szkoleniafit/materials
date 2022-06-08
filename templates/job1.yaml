@@ -3,7 +3,6 @@ parameters:
 
 jobs:
   - ${{ each x in parameters.var }}:
-  - job: Build
     steps:
       - bash: |
           echo: ${{x}}
