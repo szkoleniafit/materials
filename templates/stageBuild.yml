@@ -1,7 +1,7 @@
 parameters:
-  - name: list
-    type: projectList
-    default: []
+- name: list
+  type: stepList
+  default: []
 
 stages:
   - stage: Build
