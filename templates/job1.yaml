@@ -5,6 +5,7 @@ parameters:
 
 jobs:
   - ${{ each x in parameters.jobs }}:
-    steps:
-      - bash: |
-          echo: ${{x}}
+    - job: ${{x}}
+      steps:
+        - bash: |
+            echo: ${{x}}
