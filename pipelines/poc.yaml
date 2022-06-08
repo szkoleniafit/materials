@@ -3,29 +3,19 @@ name: $(Date:yyyyMMdd).$(Rev:r).$(Build.BuildId)
 stages:
   - stage: Stage
     jobs:
-      - deployment: Staging
-        displayName: Stage the WebApp
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]$myVar"
-                  env:
-                    myVar: 'this is a stage output var'
-                  name: printvar
+      steps:
+        - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]$myVar"
+          env:
+            myVar: 'this is a stage output var'
+          name: printvar
 
   - stage: Swap
     dependsOn: Stage
     variables:
       myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['Staging.printvar.myStageOutputVar'] ]
     jobs:
-      - deployment: Production
-        displayName: Swap to production
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - script: echo $(myVarfromStage)
+      steps:
+        - script: echo $(myVarfromStage)
 
 #stages:
 #  - stage: PreBuild
