@@ -3,7 +3,7 @@ parameters:
 
 jobs:
   - ${{ each x in parameters.jobs }}:
-    - job: ${{x}}
+    - job: job_${{x}}
       steps:
         - bash: |
             echo: ${{x}}
