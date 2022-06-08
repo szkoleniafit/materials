@@ -19,20 +19,19 @@ stages:
         steps:
           - script: echo $(myVarfromStage)
 
-#stages:
-#  - stage: PreBuild
-#    displayName: Pre build stage
-#    jobs:
-#    - job: Build
-#      steps:
-#        - template: ../templates/echo_list.yml
-#
-#  - stage: Build
-#    displayName: Build stage
-#    dependsOn: PreBuild
-#    variables:
-#      list: $[ stageDependencies.PreBuild.echo.outputs['PreBuild.echo.MODULES_IMPACTED'] ]
-#    jobs:
-#      - template: ../templates/job1.yaml
-#        parameters:
-#          jobs: ${{ variables.list }}
+  - stage: PreBuild
+    displayName: Pre build stage
+    jobs:
+    - job: Build
+      steps:
+        - template: ../templates/echo_list.yml
+
+  - stage: Build
+    displayName: Build stage
+    dependsOn: PreBuild
+    variables:
+      list: $[ stageDependencies.PreBuild.Build.outputs['echo.MODULES_IMPACTED'] ]
+    jobs:
+      - template: ../templates/job1.yaml
+        parameters:
+          jobs: ${{ variables.list }}
