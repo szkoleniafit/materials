@@ -5,6 +5,5 @@ steps:
       c=(${a[@]} ${b[@]})
 
       echo "##vso[task.setvariable variable=MODULES_IMPACTED]${c[@]}"
-      export exportedList=$c
     displayName: 'Set list'
     name: echo
