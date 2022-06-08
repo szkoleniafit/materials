@@ -16,4 +16,4 @@ stages:
     jobs:
       - template: ../templates/job1.yaml
         parameters:
-          var: ${{ variables.list }}
+          var: "1 2 3 4"
