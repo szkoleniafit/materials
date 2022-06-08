@@ -10,4 +10,4 @@ stages:
 
   - template: ../templates/stageBuild.yml
     parameters:
-      list: $[ stageDependencies.Prebuild.echo.outputs['setVars.MODULES'] ]
+      list: $(exportedList)
