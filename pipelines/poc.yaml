@@ -11,9 +11,9 @@ stages:
   - stage: Build
     displayName: Build stage
     dependsOn: PreBuild
-    #variables:
-    #  list: $[ dependencies.PreBuild.echo.outputs['passOutput.MODULES_IMPACTED'] ]
+    variables:
+      list: $[ dependencies.PreBuild.echo.outputs['passOutput.MODULES_IMPACTED'] ]
     jobs:
       - template: ../templates/job1.yaml
         parameters:
-          jobs: ["1","2","3","4"]
+          jobs: $(list)
