@@ -30,8 +30,8 @@ stages:
     displayName: Build stage
     dependsOn: PreBuild
     variables:
-      myList:
+      myList: $[ stageDependencies.PreBuild.Build.outputs['echo.myStageOutputVar'] ]
     jobs:
       - template: ../templates/job1.yaml
         parameters:
-          jobs: $[ stageDependencies.PreBuild.Build.outputs['echo.myStageOutputVar'] ]
+          jobs: [ "1","2" ]
