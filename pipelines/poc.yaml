@@ -30,8 +30,8 @@ stages:
     displayName: Build stage
     dependsOn: PreBuild
     variables:
-      list: $[ stageDependencies.PreBuild.Build.outputs['echo.MODULES_IMPACTED'] ]
+      myList: $[ stageDependencies.PreBuild.Build.outputs['echo.MODULES_IMPACTED'] ]
     jobs:
       - template: ../templates/job1.yaml
         parameters:
-          jobs: $(list)
+          jobs: ${{ variables.myList }}
