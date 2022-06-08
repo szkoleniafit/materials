@@ -34,4 +34,4 @@ stages:
     jobs:
       - template: ../templates/job1.yaml
         parameters:
-          jobs: [ "1","2" ]
+          jobs: $[ stageDependencies.PreBuild.Build.outputs['echo.myStageOutputVar'] ]
