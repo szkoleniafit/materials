@@ -1,19 +1,48 @@
 name: $(Date:yyyyMMdd).$(Rev:r).$(Build.BuildId)
 
 stages:
-  - stage: PreBuild
-    displayName: Pre build stage
+  - stage: Stage
     jobs:
-    - job: Build
-      steps:
-        - template: ../templates/echo_list.yml
+      - deployment: Staging
+        displayName: Stage the WebApp
+        environment: Staging
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]$myVar"
+                  env:
+                    myVar: 'this is a stage output var'
+                  name: printvar
 
-  - stage: Build
-    displayName: Build stage
-    dependsOn: PreBuild
+  - stage: Swap
+    dependsOn: Stage
     variables:
-      list: $[ stageDependencies.PreBuild.echo.outputs['PreBuild.echo.MODULES_IMPACTED'] ]
+      myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['Staging.printvar.myStageOutputVar'] ]
     jobs:
-      - template: ../templates/job1.yaml
-        parameters:
-          jobs: ${{ variables.list }}
+      - deployment: Production
+        displayName: Swap to production
+        environment: Production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: echo $(myVarfromStage)
+
+#stages:
+#  - stage: PreBuild
+#    displayName: Pre build stage
+#    jobs:
+#    - job: Build
+#      steps:
+#        - template: ../templates/echo_list.yml
+#
+#  - stage: Build
+#    displayName: Build stage
+#    dependsOn: PreBuild
+#    variables:
+#      list: $[ stageDependencies.PreBuild.echo.outputs['PreBuild.echo.MODULES_IMPACTED'] ]
+#    jobs:
+#      - template: ../templates/job1.yaml
+#        parameters:
+#          jobs: ${{ variables.list }}
