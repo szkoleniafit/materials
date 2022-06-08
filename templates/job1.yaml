@@ -5,4 +5,4 @@ jobs:
   - ${{ each x in parameters.var }}:
   - job: Build ${{x}}
     steps:
-      echo: ${parameters.var}
+      echo: ${{parameters.var}}
