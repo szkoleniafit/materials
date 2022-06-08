@@ -1,8 +1,10 @@
 parameters:
-  var: []
+  - name: 'jobs'
+    type: jobList
+    default: []
 
 jobs:
-  - ${{ each x in parameters.var }}:
+  - ${{ each x in parameters.jobs }}:
     steps:
       - bash: |
           echo: ${{x}}
