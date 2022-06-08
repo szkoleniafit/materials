@@ -1,11 +1,13 @@
 name: $(Date:yyyyMMdd).$(Rev:r).$(Build.BuildId)
 
-jobs:
-  - job: Build
-    steps:
-      - template: ../templates/echo_list.yml
+stages:
+  - stage: PreBuild
+    displayName: Pre build stage
+    jobs:
+    - job: Build
+      steps:
+        - template: ../templates/echo_list.yml
 
-  - ${{ each x in dependencies.Set.outputs['setVars.MODULES'] }}:
-    - templates: ../templates/job1.yaml
-      parameters:
-        var: ${{x}}
+  - template: ../templates/stageBuild.yml
+    parameters:
+      list: $[ stageDependencies.Prebuild.echo.outputs['setVars.MODULES'] ]

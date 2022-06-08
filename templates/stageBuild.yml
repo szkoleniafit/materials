@@ -1,0 +1,13 @@
+parameters:
+  - name: list
+    type: projectList
+    default: []
+
+stages:
+  - stage: Build
+      displayName: Build stage
+      jobs:
+        - ${{ each x in parameters.list }}:
+            - templates: ../templates/job1.yaml
+              parameters:
+                var: ${{x}}
