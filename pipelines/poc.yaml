@@ -7,7 +7,7 @@ stages:
         steps:
           - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]$myVar"
             env:
-              myVar: 'this is a stage output var'
+              myVar: 'this'
             name: printvar
 
   - stage: Swap
@@ -20,18 +20,12 @@ stages:
           - script: echo $(myVarfromStage)
 
   - stage: PreBuild
+    dependsOn: Stage
     displayName: Pre build stage
+    variables:
+      myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['printvar.myStageOutputVar'] ]
     jobs:
     - job: Build
       steps:
         - template: ../templates/echo_list.yml
-
-  - stage: Build
-    displayName: Build stage
-    dependsOn: PreBuild
-    variables:
-      myList: $[ stageDependencies.PreBuild.Build.outputs['echo.myStageOutputVar'] ]
-    jobs:
-      - template: ../templates/job1.yaml
-        parameters:
-          jobs: [ "1","2" ]
+      condition: and(succeeded(), eq(variables.myVarfromStage, 'this'))
