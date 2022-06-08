@@ -4,7 +4,6 @@ stages:
   - stage: Stage
     jobs:
       - job: Build
-        name: Staging
         steps:
         - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]$myVar"
           env:
@@ -14,7 +13,7 @@ stages:
   - stage: Swap
     dependsOn: Stage
     variables:
-      myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['Staging.printvar.myStageOutputVar'] ]
+      myVarfromStage: $[ stageDependencies.Stage.outputs['printvar.myStageOutputVar'] ]
     jobs:
       - job: Build
         steps:
