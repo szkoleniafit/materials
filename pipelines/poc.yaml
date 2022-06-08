@@ -21,7 +21,7 @@ stages:
       - job: Build
         steps:
           - script: echo $(myVarfromStage)
-        condition: and(succeeded(), eq(variables.swapVar, 'Swap'))
+        condition: and(succeeded(), eq(variables.swapVar, 'swapVar'))
 
   - stage: Build
     dependsOn: Stage
@@ -32,4 +32,4 @@ stages:
     - job: Build
       steps:
         - template: ../templates/echo_list.yml
-      condition: and(succeeded(), eq(variables.buildVar, 'Build'))
+      condition: and(succeeded(), eq(variables.buildVar, 'buildVar'))
