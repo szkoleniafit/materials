@@ -1,0 +1,12 @@
+name: $(Date:yyyyMMdd).$(Rev:r).$(Build.BuildId)
+
+jobs:
+  - job: Build
+    name: echo
+    steps:
+      - template: templates/echo_list.yml
+
+  ${{ each x in $[ dependencies.Set.outputs['setVars.MODULES'] ]}}
+  - templates: templates/job1.yaml
+    parameters:
+      var: ${{x}}

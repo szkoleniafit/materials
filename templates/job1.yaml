@@ -1,0 +1,8 @@
+parameters:
+  - name: var
+
+jobs:
+  - job: Build
+    dependsOn: Set
+    steps:
+      echo: ${parameters.var}
