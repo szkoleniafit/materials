@@ -6,4 +6,4 @@ jobs:
   - job: Build ${{x}}
     steps:
       - bash: |
-          echo: ${{parameters.var}}
+          echo: ${{x}}
