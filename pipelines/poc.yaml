@@ -3,7 +3,8 @@ name: $(Date:yyyyMMdd).$(Rev:r).$(Build.BuildId)
 stages:
   - stage: Stage
     jobs:
-      steps:
+      - job: Build
+        steps:
         - bash: echo "##vso[task.setvariable variable=myStageOutputVar;isOutput=true]$myVar"
           env:
             myVar: 'this is a stage output var'
@@ -14,8 +15,9 @@ stages:
     variables:
       myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['Staging.printvar.myStageOutputVar'] ]
     jobs:
-      steps:
-        - script: echo $(myVarfromStage)
+      - job: Build
+        steps:
+          - script: echo $(myVarfromStage)
 
 #stages:
 #  - stage: PreBuild
