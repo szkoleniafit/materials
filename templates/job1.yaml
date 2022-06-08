@@ -1,5 +1,5 @@
 parameters:
-  - name: var
+  var: []
 
 jobs:
   - ${{ each x in parameters.var }}:
