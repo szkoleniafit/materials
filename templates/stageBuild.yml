@@ -5,7 +5,7 @@ parameters:
 
 stages:
   - stage: Build
-      displayName: Build stage
+    displayName: Build stage
       jobs:
         - ${{ each x in parameters.list }}:
             - templates: ../templates/job1.yaml
