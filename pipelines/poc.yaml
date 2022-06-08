@@ -5,7 +5,6 @@ stages:
     jobs:
       - deployment: Staging
         displayName: Stage the WebApp
-        environment: Staging
         strategy:
           runOnce:
             deploy:
@@ -22,7 +21,6 @@ stages:
     jobs:
       - deployment: Production
         displayName: Swap to production
-        environment: Production
         strategy:
           runOnce:
             deploy:
