@@ -6,8 +6,10 @@ parameters:
 stages:
   - stage: Build
     displayName: Build stage
+    dependsOn: PreBuild
+    variables:
+      list: $[ dependencies.PreBuild.echo.outputs['passOutput.MODULES_IMPACTED'] ]
     jobs:
-    - ${{ each x in parameters.list }}:
       - templates: ../templates/job1.yaml
         parameters:
-          var: ${{x}}
+          var: $(list)

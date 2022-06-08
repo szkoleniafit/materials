@@ -9,5 +9,3 @@ stages:
         - template: ../templates/echo_list.yml
 
   - template: ../templates/stageBuild.yml
-    parameters:
-      list: $[ dependencies.PreBuild.echo.outputs['passOutput.MODULES_IMPACTED'] ]

@@ -2,7 +2,7 @@ parameters:
   - name: var
 
 jobs:
-  - job: Build
-    dependsOn: Set
+  - ${{ each x in parameters.var }}:
+  - job: Build ${{x}}
     steps:
       echo: ${parameters.var}
