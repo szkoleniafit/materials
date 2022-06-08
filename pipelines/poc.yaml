@@ -28,9 +28,9 @@ stages:
 
   - stage: Build
     displayName: Build stage
-    dependsOn: PreBuild
+    dependsOn: Stage
     variables:
-      myList: "$[ stageDependencies.PreBuild.Build.outputs['echo.MODULES_IMPACTED'] ]"
+      myList: $[ stageDependencies.Stage.Staging.outputs['printvar.myStageOutputVar'] ]
     jobs:
       - template: ../templates/job1.yaml
         parameters:
