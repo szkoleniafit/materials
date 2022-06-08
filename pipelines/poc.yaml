@@ -10,4 +10,4 @@ stages:
 
   - template: ../templates/stageBuild.yml
     parameters:
-      list: ${{variables.MODULES_IMPACTED }}
+      list: ${{ variables.MODULES_IMPACTED }}
