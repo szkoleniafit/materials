@@ -10,6 +10,6 @@ stages:
     variables:
       list: $[ dependencies.PreBuild.echo.outputs['passOutput.MODULES_IMPACTED'] ]
     jobs:
-      - templates: ../templates/job1.yaml
-        parameters:
-          var: $(list)
+    - templates: ../templates/job1.yaml
+      parameters:
+        var: $(list)
