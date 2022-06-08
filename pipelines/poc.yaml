@@ -13,7 +13,7 @@ stages:
   - stage: Swap
     dependsOn: Stage
     variables:
-      myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['Staging.printvar.myStageOutputVar'] ]
+      myVarfromStage: $[ stageDependencies.Stage.Staging.outputs['printvar.myStageOutputVar'] ]
     jobs:
       - job: Build
         steps:
