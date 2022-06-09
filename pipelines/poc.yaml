@@ -19,6 +19,7 @@ stages:
       swapVar: $[ stageDependencies.Stage.Staging.outputs['printvar.swapVar'] ]
     jobs:
       - job: Build
+        displayName: "Docker build and push"
         steps:
           - script: echo $(myVarfromStage)
         condition: and(succeeded(), eq(variables.swapVar, 'swapVar'))
