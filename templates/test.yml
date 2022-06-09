@@ -1,3 +1,2 @@
 jobs:
-  - ${{ if eq(variables.job_test, TRUE) }}:
     - template: job1.yaml
