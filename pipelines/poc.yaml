@@ -8,7 +8,7 @@ stages:
           - bash: |
               echo "##vso[task.setvariable variable=$buildVar;isOutput=true]$buildVar"
               echo "##vso[task.setvariable variable=$swapVar;isOutput=true]TRUE"
-              echo "##vso[task.setvariable variable=job_test;isOutput=true]'TRUE'"
+              echo "##vso[task.setvariable variable=job_test;isOutput=true]TRUE"
             env:
               buildVar: 'buildVar'
               swapVar: 'swapVar'
