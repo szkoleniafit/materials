@@ -20,7 +20,6 @@ stages:
       - template: ../templates/variables.yml
     jobs:
       - template: ../templates/test.yml
-        condition: and(succeeded(), eq(variables.job_test, 'TRUE'))
       - job: Build
         displayName: "Docker build and push"
         steps:
