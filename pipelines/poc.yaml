@@ -10,7 +10,7 @@ stages:
               echo "##vso[task.setvariable variable=$swapVar;isOutput=true]$swapVar"
             env:
               buildVar: 'buildVar'
-              swapVar: 'null'
+              swapVar: 'swapVar'
             name: printvar
 
   - stage: Swap
