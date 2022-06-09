@@ -1,9 +1,5 @@
-parameters:
-  jobs: []
-
 jobs:
-  - ${{ each x in parameters.jobs }}:
-    - job: job_${{x}}
-      steps:
-        - bash: |
-            echo ${{x}}
+  - job: job_test
+    steps:
+      - bash: |
+          echo Test
