@@ -16,7 +16,7 @@ stages:
   - stage: Swap
     dependsOn: Stage
     variables:
-      swapVar: $[ stageDependencies.Stage.Staging.outputs['printvar.swapVar'] ]
+      - template: ../templates/variables.yml
     jobs:
       - job: Build
         displayName: "Docker build and push"
