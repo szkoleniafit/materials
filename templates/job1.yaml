@@ -1,4 +1,6 @@
 jobs:
+  variables:
+    - template: ../templates/variables.yml
   - job: job_test
     steps:
       - bash: |
