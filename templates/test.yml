@@ -1,5 +1,7 @@
 parameters:
-  jobTest: ""
+  - name: jobTest
+    type: boolean
+    default: false
 jobs:
   - job: job_test
     steps:
