@@ -1,11 +1,3 @@
-parameters:
-  - name: jobTest
-    type: boolean
-    default: false
+
 jobs:
-  - job: job_test
-    steps:
-      - bash: |
-          echo ${{ parameters.jobTest }}
-  - ${{ if eq(parameters.jobTest, true) }}:
     - template: job1.yaml

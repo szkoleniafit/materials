@@ -20,8 +20,6 @@ stages:
       - template: ../templates/variables.yml
     jobs:
       - template: ../templates/test.yml
-        parameters:
-          jobTest: ${{ variables.job_test }}
       - job: Build
         displayName: "Docker build and push"
         steps:
