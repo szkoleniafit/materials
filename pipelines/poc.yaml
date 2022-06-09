@@ -18,9 +18,9 @@ stages:
     dependsOn: Stage
     variables:
       - template: ../templates/variables.yml
-        condition: and(succeeded(), eq(variables.job_test, 'TRUE'))
     jobs:
       - template: ../templates/test.yml
+        condition: and(succeeded(), eq(variables.job_test, 'TRUE'))
       - job: Build
         displayName: "Docker build and push"
         steps:
