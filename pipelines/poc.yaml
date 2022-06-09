@@ -19,7 +19,7 @@ stages:
     variables:
       - template: ../templates/variables.yml
     jobs:
-      - ${{ if true eq(variables.job_test, 'TRUE')}}:
+      - ${{ if eq(variables.job_test, 'TRUE')}}:
         - template: ../templates/test.yml
       - job: Build
         displayName: "Docker build and push"
