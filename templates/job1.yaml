@@ -1,7 +1,6 @@
 jobs:
-  variables:
-    - template: ../templates/variables.yml
   - job: job_test
     steps:
       - bash: |
           echo Test
+    condition: and(succeeded(), eq(variables.job_test, 'TRUE'))
