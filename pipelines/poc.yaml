@@ -24,7 +24,7 @@ stages:
         displayName: "Docker build and push"
         steps:
           - script: echo $(myVarfromStage)
-        condition: and(succeeded(), eq(variables.swapVar, 'TRUE'))
+        condition: and(succeeded(), eq(variables.job_test, 'TRUE'))
 
   - stage: Build
     dependsOn: Stage
