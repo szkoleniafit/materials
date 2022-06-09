@@ -6,7 +6,8 @@ stages:
       - job: Staging
         steps:
           - bash: |
-              for x in (buildVar swapVar job_test);do
+              arry=(buildVar swapVar job_test)
+              for x in ${arry[@]};do
                 echo "##vso[task.setvariable variable=$x;isOutput=true]true"
               done
             env:
