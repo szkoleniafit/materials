@@ -1,1 +1,2 @@
-swapVar: $[ stageDependencies.Stage.Staging.outputs['printvar.swapVar'] ]
+variables:
+  swapVar: $[ stageDependencies.Stage.Staging.outputs['printvar.swapVar'] ]
