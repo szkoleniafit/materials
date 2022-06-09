@@ -1,5 +1,9 @@
 parameters:
   jobTest: ""
 jobs:
-  - ${{ if eq(parameters.JobTest, 'TRUE') }}:
+  - job: job_test
+      steps:
+          - bash: |
+            echo ${{ parameters.jobTest }}
+  - ${{ if eq(parameters.jobTest, 'TRUE') }}:
     - template: job1.yaml
