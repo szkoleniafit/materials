@@ -1,2 +1,5 @@
+parameters:
+  jobTest: ""
 jobs:
+  - ${{ if eq(parameters.JobTest, 'TRUE') }}
     - template: job1.yaml
