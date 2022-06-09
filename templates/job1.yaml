@@ -3,4 +3,3 @@ jobs:
     steps:
       - bash: |
           echo Test
-    condition: and(succeeded(), eq(variables.job_test, 'TRUE'))
