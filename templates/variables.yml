@@ -1,2 +1,3 @@
 variables:
   swapVar: $[ stageDependencies.Stage.Staging.outputs['printvar.swapVar'] ]
+  job_test: $[ stageDependencies.Stage.Staging.outputs['printvar.job_test'] ]
