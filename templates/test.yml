@@ -5,5 +5,5 @@ jobs:
     steps:
       - bash: |
           echo ${{ parameters.jobTest }}
-  - ${{ if eq(parameters.jobTest, 'TRUE') }}:
+  - ${{ if eq(parameters.jobTest, TRUE) }}:
     - template: job1.yaml
