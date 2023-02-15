@@ -119,8 +119,17 @@
       or helmVersion not in helm_version.stdout | default("")
 
   - name: Download Terraform
+    ansible.builtin.get_url:
+      url: "https://releases.hashicorp.com/terraform/{{ terraformVersion }}/terraform_{{ terraformVersion }}_linux_amd64.zip"
+      dest: "{{ srcDirectory }}/terraform-v{{ terraformVersion }}.zip"
+      mode: '0440'
+    when: >
+      not terraform_exist.stat.exists
+      or terraformVersion not in terraform_version.stdout | default("")
+
+  - name: Install Terraform
     unarchive:
-      src: "https://releases.hashicorp.com/terraform/{{ terraformVersion }}/terraform_{{ terraformVersion }}_linux_amd64.zip"
+      src: "{{ srcDirectory }}/terraform-v{{ terraformVersion }}.zip"
       dest: "{{ terraformBinDir }}"
       remote_src: yes
     when: >
