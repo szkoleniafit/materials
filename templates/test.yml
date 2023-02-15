@@ -1,5 +1,3 @@
 
 jobs:
     - template: job1.yaml
-    - template: job1.yaml
-    - template: job1.yaml
