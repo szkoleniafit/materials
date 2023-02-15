@@ -33,7 +33,7 @@ stages:
     variables:
       buildVar: $[ stageDependencies.Stage.Staging.outputs['printvar.buildVar'] ]
     jobs:
-    - job: Build
+    - job: Deploy
       steps:
         - template: ../templates/echo_list.yml
       condition: and(succeeded(), eq(variables.buildVar, true))
