@@ -12,7 +12,7 @@ else
   echo "Błąd"
 fi
 
-if [ "a" != "b" ]; then
+if [ "a" != "a" ]; then
   echo "a != b"
 elif [ "c" != "d" ]; then
   echo "c != d"
